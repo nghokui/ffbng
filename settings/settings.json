@@ -1,0 +1,11 @@
+{
+    "db_path": "/Users/nghokui/Programming/Projects/fantasy/football/data/", 
+    "db_name": "nflstats.db",
+    "data_directory": "/Users/nghokui/Programming/Projects/fantasy/football/data/nfl_00-15/csv/",
+    "chunk_size": 50,
+    "conversion_list": {
+        "object": "TEXT", 
+        "int64": "INTEGER", 
+        "float64": "REAL"
+    }
+}

@@ -87,6 +87,7 @@ ENV/
 # Rope project settings
 .ropeproject
 
+# Custom stuff
 nflstats.sublime-project
 nflstats.sublime-workspace
 /data
