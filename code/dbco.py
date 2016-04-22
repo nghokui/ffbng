@@ -108,6 +108,24 @@ class DBConnector():
         """
         self.cursor.execute('DROP TABLE {};'.format(in_table_name))
         self.connection.commit()
+    def queryTable(self, in_table_name, in_field_name, in_conditions=[]):
+        """ Method pulls values from the database.
+
+            Method loops through the conditions list to generate the query
+            conditions (where x = y, for example).
+
+            In conditions should be a tuple of (column_name, condition_value).
+        """
+        fields = ','.join(in_field_name if type(in_field_name)is list else [])
+        query = "SELECT {} FROM {}".format(fields, in_table_name)
+        cond_list = []
+        for c,(cond_field, cond_value) in enumerate(in_conditions):
+            condition_string = ' WHERE {}=?' if c == 0 else ' AND {}=?'
+            query += condition_string.format(cond_field)
+            cond_list.append(cond_value)
+
+        result = self.cursor.execute('{};'.format(query), tuple(cond_list))
+        return result.fetchall()
     def emptyTable(self, in_table_name):
         """ Method empties all values from the table in the current database specified by the passed in string.
         """ 
